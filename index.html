@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AudioBridge Pro | Escucha tu DAW sin retraso en cualquier dispositivo</title>
+    <meta name="description" content="Descarga AudioBridge Pro gratis. El mejor plugin VST3 para Windows que envía audio desde FL Studio, Ableton o Cubase a tus auriculares o programas de streaming sin latencia ni cortes.">
+    <meta name="keywords" content="plugin de audio, FL studio a discord, cero latencia, VST3 gratis, escuchar DAW en auriculares, enrutamiento de audio, Windows, software para músicos, streaming de audio">
+    <meta name="author" content="Tu Nombre o Alias">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS BASE --- */
+        :root {
+            --bg-color: #08080c;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --brand-primary: #00e5ff;
+            --brand-secondary: #b05cff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- EFECTOS VISUALES ATRACTIVOS --- */
+        .glow-bg {
+            position: fixed;
+            width: 100vw; height: 100vh;
+            top: 0; left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.4;
+        }
+        .orb-1 { top: -20%; left: -10%; width: 600px; height: 600px; background: var(--brand-secondary); }
+        .orb-2 { bottom: -20%; right: -10%; width: 700px; height: 700px; background: var(--brand-primary); }
+
+        /* --- SECCIÓN PRINCIPAL (HERO) --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--brand-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* --- BOTONES --- */
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-main {
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+            border: none;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(176, 92, 255, 0.4);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-outline:hover {
+            background: var(--card-bg);
+            border-color: var(--text-muted);
+        }
+
+        /* --- BENEFICIOS --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 5rem 0 3rem;
+        }
+
+        .benefits {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-primary);
+        }
+
+        .card-emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .card p { color: var(--text-muted); }
+
+        /* --- CÓMO FUNCIONA --- */
+        .steps {
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+        }
+        .step-number {
+            background: var(--brand-secondary);
+            color: #fff;
+            width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%;
+            font-size: 1.5rem; font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* --- ANIMACIONES SCROLL --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <header class="hero fade-up">
+        <div class="badge">100% Gratis para Windows</div>
+        <h1>El puente perfecto entre tu música y tus oídos.</h1>
+        <p class="subtitle">Envía el sonido de tu programa de producción (FL Studio, Ableton, Cubase) directamente a tus auriculares, altavoces o a Discord <strong>sin retraso y sin cortes</strong>.</p>
+        
+        <div class="cta-group">
+            <a href="https://github.com/juanpimg/AudioBridge-Pro/archive/refs/tags/v1.0.0.zip" class="btn btn-main">
+                Descargar Gratis (ZIP)
+            </a>
+            <a href="#como-funciona" class="btn btn-outline">¿Cómo funciona?</a>
+        </div>
+    </header>
+
+    <h2 class="section-title fade-up">Diseñado para productores y streamers</h2>
+    <section class="benefits">
+        <div class="card fade-up">
+            <div class="card-emoji">⚡</div>
+            <h3>Cero Retraso (Baja Latencia)</h3>
+            <p>Toca tu teclado MIDI o graba voces y escúchalo al instante. Nuestra tecnología de red interna asegura que el audio fluya a la velocidad de la luz hacia tus auriculares.</p>
+        </div>
+        
+        <div class="card fade-up" style="transition-delay: 0.1s;">
+            <div class="card-emoji">🛡️</div>
+            <h3>Adiós a los crujidos</h3>
+            <p>¿Tu audio suena como un robot cuando abres Chrome? Nuestro "colchón de seguridad" inteligente protege el sonido para que nunca más tengas cortes molestos.</p>
+        </div>
+
+        <div class="card fade-up" style="transition-delay: 0.2s;">
+            <div class="card-emoji">🎧</div>
+            <h3>Cambia en un clic</h3>
+            <p>Pasa de tus monitores de estudio a tus auriculares Bluetooth al instante. Con nuestra sencilla aplicación de escritorio, eliges por dónde sale el sonido sin reiniciar nada.</p>
+        </div>
+    </section>
+
+    <h2 id="como-funciona" class="section-title fade-up">Más fácil imposible</h2>
+    <section class="steps">
+        <div class="step-item fade-up">
+            <div class="step-number">1</div>
+            <div>
+                <h3>Instala el Plugin (VST3)</h3>
+                <p>Copia el archivo incluido en la carpeta de plugins de tu ordenador y ponlo en el canal "Master" de tu programa de música (DAW).</p>
+            </div>
+        </div>
+        <div class="step-item fade-up" style="transition-delay: 0.1s;">
+            <div class="step-number">2</div>
+            <div>
+                <h3>Abre la Aplicación</h3>
+                <p>Haz doble clic en nuestro programa (Receptor). No requiere instalaciones complicadas ni crear cuentas.</p>
+            </div>
+        </div>
+        <div class="step-item fade-up" style="transition-delay: 0.2s;">
+            <div class="step-number">3</div>
+            <div>
+                <h3>Selecciona tu salida</h3>
+                <p>Elige por dónde quieres que salga el sonido y listo. ¡El audio de tu DAW se enviará mágicamente hacia allí!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>AudioBridge Pro</strong> es un proyecto Open Source creado para ayudar a la comunidad musical.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <a href="https://github.com/juanpimg/AudioBridge-Pro" style="color: var(--brand-primary); text-decoration: none;">Ver código fuente en GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
